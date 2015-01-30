@@ -24,7 +24,6 @@ myApp.controller('MainCtrl', ['$http', '$scope' , function($http, $scope) {
 		    	}
 
 		    	$scope.shots = data.shots;
-		    	console.log(data);
 			})
 
 			.error(function(data, status) {
