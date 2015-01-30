@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Concrete Solutions Challenge for Front-end Developer">
+		<meta name="author" content="Vinícius Barizon">
+
+		<title>Challenge for a interview for front-end developer at Concrete Solutions</title>
+
+		<!-- Bootstrap (CSS) -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+		<!-- Custom CSS for this page -->
+		<link rel="stylesheet" href="index.css">
+
+		<!-- All links with target _blank -->
+		<base target="_blank">
+	</head>
+
+	<body ng-app="concreteChallengeApp">
+		<h1>Shots + Populares</h1>
+		
+		<div ng-controller="MainCtrl as ctrl" ng-init="get_shots()">
+			<div class="container">
+				<pagination ng-model="current_page" total-items="total_items" num-pages="num_pages"
+					items-per-page="items_per_page" max-size="3" previous-text="<" next-text=">"
+					boundary-links="true" first-text="<<" last-text=">>"
+					ng-change="get_shots()" class="pagination-sm">
+				</pagination>
+
+				<div class="row">
+				  <div class="col-md-4 col-sm-4" ng-repeat="shot in shots" bs-popover>
+				  	<div data-toggle="popover" data-placement="bottom" data-trigger="manual"
+				  	data-content="<font size='1'>{{ shot.description }}</font>"
+				  	data-original-title="<img src='{{ shot.player.avatar_url }}' width='10%' class='img-circle'>
+					{{ shot.player.name }}">
+					  	<img ng-src="{{ shot.image_400_url }}" alt="{{ shot.title }}" width="400px"
+					  		fallback-src="{{ shot.image_url }}"  class="img-responsive">
+					  	</img>
+
+					  	<div class="title_views">
+					  		<span class="title">{{ shot.title }}</span>
+					  		<span class='glyphicon glyphicon-eye-open' aria-hidden='true'></span>
+					  		<span>&nbsp;{{ shot.views_count }}</span>
+					  	</div>
+				  	</div>	
+				  </div>
+				</div>
+			</div>
+		</div>
+
+		<!-- AngularJS -->
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.8/angular.min.js"></script>
+
+		<!-- jQuery -->
+    	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+		<!-- Bootstrap (JS) -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+		<!-- UI Bootstrap :: Pagination -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.min.js">
+		</script>
+
+		<!-- Custom JS for this page -->
+		<script src="index.js"></script>
+	</body>
+</html>
